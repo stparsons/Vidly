@@ -10,7 +10,7 @@ namespace Vidly.Controllers
     public class CustomersController : Controller
     {
         // GET: Customers
-        public ViewResult Index()
+        public ActionResult Index()
         {
             var customers = GetCustomers();
 

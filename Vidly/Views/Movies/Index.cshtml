@@ -1,42 +1,30 @@
-﻿@model Vidly.ViewModels.IndexMovieViewModel
+﻿@model  IEnumerable<Vidly.Models.Movie>
 @{
-    ViewBag.Title = "Random";
+    ViewBag.Title = "Movies";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Movies</h1>
-@if ( Model.Movies.Count == 0 )
+<H2>Movies</H2>
+@if (!Model.Any())
 {
-    <text>No movies exist</text>
+    <p>We don't have any Movies</p>
 }
 else
 {
-    <div class="bs-docs-section">
-        <div class="row">
-            <div class="col-lg-12">
-
-                <div class="bs-component">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col"><u>Movie</u></th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach (var movie in Model.Movies)
-                        {
-                            <tr class="table-active">
-                                <th scope="row">@movie.Name</th>
-                            </tr>
-                        }
-
-                        </tbody>
-                    </table>
-                    <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;</div>
-                </div>
-            </div>
-        </div>
-    </div>
-}
-
+ 
+    <table class=“table table-bordered table-hover”>
+        <thead>
+        <tr>
+            <td>Movies</td>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@Html.ActionLink(movie.Name, "Details", "Movies", new{ id = movie.Id }, null)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+ }
